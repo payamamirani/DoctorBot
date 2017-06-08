@@ -1,0 +1,8 @@
+ul.nav.navbar-nav(ng-controller="mvNavbarCategoryCtrl")
+    li.dropdown(ng-repeat="category in categories.categories")
+        a.dropdown-toggle(href="", data-toggle="dropdown")
+            | {{ category.Title }}
+            b.caret
+        ul.dropdown-menu
+            li(ng-repeat="child in category.Child")
+                a(href="") {{child.Title}}

@@ -1,0 +1,45 @@
+.well
+    .col-xs-12.col-md-8.col-lg-6.text-center.div-center
+        form.form-horizontal(name="loginForm")
+            fieldset
+                legend.text-center
+                    p.glyphicon.glyphicon-lock
+                    p= !!texts ? texts.LoginHeader : "Login to pulse market"
+                .form-group
+                    label.col-sm-3.control-label(for="email")= (!!texts ? texts.Email : "Email") + " : "
+                    .col-sm-9
+                        input.form-control(name="email", type="email", placeholder= !!texts ? texts.Email : "Email", ng-model="username", required)
+                .form-group
+                    label.col-sm-3.control-label(for="password")= (!!texts ? texts.Password : "Password") + " : "
+                    .col-sm-9
+                        input.form-control(name="password", type="password", placeholder= !!texts ? texts.Password : "password", ng-model="password", required)
+                .form-group
+                    label.col-sm-3.control-label(for="captcha")= (!!texts ? texts.Captcha : "Captcha") + " : "
+                    .col-sm-5
+                        img.captcha(src="/captcha?123456")
+                        button.btn.btn-default.btn-refresh(name="captcha", type="button", ng-click="refreshCaptcha()")
+                            span.glyphicon.glyphicon-refresh
+                    .col-sm-4
+                        input.form-control(name="captcha", type="text", placeholder= !!texts ? texts.Captcha : "Captcha", ng-model="captcha", maxlength="5", required)
+                .from-group
+                    .col-sm-3
+                        | &nbsp;
+                    .col-xs-1
+                        input(name="remember", type="checkbox", ng-model="remember")
+                    .col-xs-8.text-right.checkbox-text(ng-click="rememberMe()")
+                        span= !!texts ? texts.RememberMe : "Remember me"
+                .form-group
+                .form-group
+                    .col-xs-12.pull-left
+                        button.btn.btn-primary(ng-click="signin()", ng-disabled="loginForm.$invalid")= !!texts ? texts.Login : "Login"
+                        | &nbsp;
+                        a.btn.btn-default(href="/")= !!texts ? texts.Cancel : "Cancel"
+                .form-group
+                .form-group
+                    .col-xs-12
+                        a(href="/forgotpassword")= !!texts ? texts.ForgotPassword : "Forgot Password"
+
+.alert.alert-info.col-xs-12.text-center.div-center
+    span= !!texts ? texts.NotRegisteredBefore : "Previously not registered?"
+    | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    a.dash-decoration.text-info(href="/signup")= !!texts ? texts.RegisterInSite : "Register in site"

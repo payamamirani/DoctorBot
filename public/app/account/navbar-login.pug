@@ -1,0 +1,32 @@
+.navbar-left(ng-controller="mvNavbarCtrl")
+    ul.nav.navbar-nav.navbar-left(ng-hide="identity.isAuthenticated()")
+        li
+            a(href="/signin")= !!texts ? texts.Login : "Log in"
+    ul.nav.navbar-nav.navbar-left(ng-show="identity.isAuthenticated()")
+        li
+            a(href="", data-toggle="modal", data-target="#myPanel")
+                | {{ identity.currentUser.FirstName + " " + identity.currentUser.LastName }}
+
+    .modal.fade#myPanel(role="profile", ng-show="identity.isAuthenticated()")
+        .modal-dialog.col-xs-12.col-sm-8.div-center
+            .modal-content
+                .modal-header
+                    button.close(data-dismiss="modal") &times;
+                    h4 {{ identity.currentUser.FirstName + " " + identity.currentUser.LastName }}
+                .modal-body
+                    ul.nav.nav-tabs
+                        li.active
+                            a(href="", data-toggle="tab", data-target="#profile")= !!texts ? texts.Profile : "Profile"
+                    .tab-content
+                        .tab-pane.fade.in.active#profile
+                            h4= !!texts ? texts.Profile : "Profile"
+                            .col-xs-12.col-sm-8.col-md-4.non-float
+                                ul.nav.nav-pills.nav-stacked
+                                    li
+                                        a(href="/profile")= !!texts ? texts.Profile : "Profile"
+                                    li
+                                        a(href="/changepassword")= !!texts ? texts.ChangePassword : "ChangePassword"
+                                    li
+                                        a(href="", ng-click="logout()")= !!texts ? texts.SignOut : "SignOut"
+                .modal-footer
+                    button.btn.btn-default(data-dismiss="modal")= !!texts ? texts.Close : "Close"

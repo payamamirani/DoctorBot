@@ -1,0 +1,1 @@
+<ul class="nav navbar-nav" ng-controller="mvNavbarCategoryCtrl"><li class="dropdown" ng-repeat="category in categories.categories"><a class="dropdown-toggle" href="" data-toggle="dropdown">{{ category.Title }}<b class="caret"></b></a><ul class="dropdown-menu"><li ng-repeat="child in category.Child"><a href="">{{child.Title}}</a></li></ul></li></ul>

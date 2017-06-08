@@ -1,0 +1,21 @@
+{
+  "name": "doctorbot",
+  "description": "Doctor Bot Web",
+  "main": "server.js",
+  "authors": [
+    "Payam Amirani <pm.amirani@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-resource": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "angular-ui-tree": "^2.22.5",
+    "bootstrap": "^3.3.7",
+    "bootstrap-rtl": "^3.4.0",
+    "jquery": "^3.2.1",
+    "toastr": "^2.1.3"
+  }
+}

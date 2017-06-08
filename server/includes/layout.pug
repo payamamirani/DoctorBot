@@ -1,0 +1,20 @@
+doctype html5
+html
+    head
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        base(href="/")
+        title= !!texts ? texts.AppName : ""
+        //link(rel="shortcut icon", type="image/x-icon", href="/favicon.ico")
+        link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.css")
+        if lang == "fa"
+            link(rel="stylesheet", href="/vendor/bootstrap-rtl/dist/css/bootstrap-rtl.css")
+        link(rel="stylesheet", href="/vendor/angular-ui-tree/dist/angular-ui-tree.css")
+        link(rel="stylesheet", href="/vendor/toastr/toastr.css")
+        link(rel="stylesheet", href="/css/style.css")
+    body(ng-app='app')
+        include currentUser
+        block main-content
+        include scripts
+        .loading(loader)
+            .ajax-loader
+                img(src="/images/loading.gif")

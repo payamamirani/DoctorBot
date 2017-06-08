@@ -1,0 +1,28 @@
+extends  ../includes/layout
+block main-content
+    .navbar.navbar-default
+        .container
+            .navbar-header
+                button.navbar-toggle(type="button", data-toggle="collapse", data-target="#myNavbar")
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href="/")= !!texts ? texts.AppName : ""
+                    h6= !!texts ? texts.AppDescription : ""
+            .navbar-collapse.collapse#myNavbar
+                div(ng-include="'/partials/account/navbar-login'")
+
+    section.content
+        .container(ng-view)
+
+    footer.container-fluid
+        .row.text-sm-right.text-xs-center
+            .col-xs-12
+                h4
+                    a(href="")= !!texts ? texts.AboutUs : "About Us"
+                    | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    a(href="")= !!texts ? texts.ContactUs : "Contact Us"
+            .col-xs-12.col-sm-8
+                h6= !!texts ? texts.CopyRight : "Copy Right"
+            .col-xs-12.col-sm-4.text-sm-left
+                h6 Copyright &copy; 2016 Doctor Bot
