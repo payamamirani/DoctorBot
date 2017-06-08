@@ -1,0 +1,17 @@
+{
+  "name": "doctorbot",
+  "version": "1.0.0",
+  "description": "Doctor Bot Web",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Payam Amirani <pm.amirani@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "pug": "^2.0.0-rc.2",
+    "telegraf": "^3.7.3"
+  }
+}
