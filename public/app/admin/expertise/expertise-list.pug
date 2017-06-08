@@ -1,0 +1,47 @@
+
+.row
+    .col-xs-12
+        button.btn.btn-primary(ng-click="AddNew()")= !!texts ? texts.Add : "Add"
+br
+.table-responsive
+    table.table.table-striped.table-hover
+        thead
+            tr
+                th عنوان
+                th فعال
+        tbody
+            tr(ng-repeat="ex in expertise").hand-cursor
+                td {{ ex.Title }}
+                td {{ ex.IsActive }}
+
+.modal.fade#AddExpertise(role="AddExpertise")
+    .modal-dialog.col-xs-12.col-sm-8.div-center
+        .modal-content
+            .modal-header
+                button.close(data-dismiss="modal") &times;
+                h4 {{ ModalTitle }}
+            .modal-body
+                .well.text-center
+                    form.form-horizontal(name="addExpertiseForm")
+                        fieldset
+                            .form-group
+                                label.col-sm-3.control-label(for="title")
+                                    = (!!texts ? texts.ExpertiseTitle : "Expertise Title") + " : "
+                                .col-sm-9
+                                    input.form-control(name="title" type="text" ng-model="expertiseTitle" required
+                                    placeholder= !!texts ? texts.ExpertiseTitle : "Expertise Title")
+                                    input(type="hidden" ng-model="Id")
+                                    input(type="hidden" ng-model="method")
+                            .form-group
+                                label.col-sm-3.control-label(for="isActive")
+                                    = (!!texts ? texts.Active : "Active") + " : "
+                                .col-sm-9
+                                    input.form-control(name="isActive" type="checkbox" ng-model="expertiseIsActive")
+                            .form-group
+                                .col-xs-12.pull-left
+                                    button.btn.btn-primary(ng-click="SaveExpertise()" ng-disabled="addExpertiseForm.$invalid")
+                                        = !!texts ? texts.Save : "Save"
+                                    | &nbsp;
+                                    a.btn.btn-default(href="" data-toggle="modal" data-dismiss="modal")= !!texts ? texts.Cancel : "Cancel"
+            .modal-footer
+                button.btn.btn-default(data-dismiss="modal")= !!texts ? texts.Close : "Close"

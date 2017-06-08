@@ -2,3 +2,5 @@
 ul.nav.nav-pills.nav-stacked(ng-show="identity.isAuthenticated()")
     li(ng-show="identity.currentUser.isAdmin()")
         a(href="/admin/users")= !!texts ? texts.Users : "Users"
+    li(ng-show="identity.currentUser.isAdmin()")
+        a(href="/admin/expertise")= !!texts ? texts.Expertise : "Expertise"
