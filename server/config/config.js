@@ -7,6 +7,7 @@ var viewPath = path.normalize(path.join(rootPath, 'server/views'));
 var localesPath = path.normalize(path.join(publicPath, 'locales'));
 var templatePath = path.normalize(path.join(publicPath, 'templateFile'));
 var siteImagePath = path.normalize(path.join(publicPath, 'siteImages'));
+var keyPath = path.normalize(path.join(rootPath, 'server', 'key'));
 
 module.exports = function(env) {
     var config = {
@@ -16,6 +17,9 @@ module.exports = function(env) {
         localesPath: localesPath,
         templatePath: templatePath,
         siteImagePath: siteImagePath,
+        keyPath: keyPath,
+        httpsPort: 443,
+        telegramToken: "372521757:AAFViBIIVXp7l3IvC6jz8oi-qhlNw88Yofo"
     };
 
     if(env === "development") {

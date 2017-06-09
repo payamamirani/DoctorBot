@@ -69,5 +69,7 @@
   "Expertise": "تخصص ها",
   "ExpertiseTitle": "عنوان تخصص",
   "AddExpertise": "افزودن تخصص",
+  "EditExpertise": "ویرایش تخصص",
+  "ChangeActive": "تغییر وضعیت",
   "Active": "فعال"
 }

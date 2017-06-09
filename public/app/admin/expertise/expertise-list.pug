@@ -9,10 +9,17 @@ br
             tr
                 th عنوان
                 th فعال
+                th عملیات
         tbody
             tr(ng-repeat="ex in expertise").hand-cursor
                 td {{ ex.Title }}
                 td {{ ex.IsActive }}
+                td
+                    .btn-group
+                        a.btn.btn-sm.btn-primary.btn-group(ng-click='ChangeActive(ex)', title=!!texts ? texts.ChangeActive : "Change Active")
+                            span.glyphicon.glyphicon-refresh
+                        a.btn.btn-sm.btn-success.btn-group(ng-click='Edit(ex)', title=!!texts ? texts.Edit : "Edit")
+                            span.glyphicon.glyphicon-edit
 
 .modal.fade#AddExpertise(role="AddExpertise")
     .modal-dialog.col-xs-12.col-sm-8.div-center

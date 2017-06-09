@@ -9,9 +9,10 @@ var express = require('express'),
     mongoose = require('mongoose'),
     MongoStore = require('connect-mongo')(session),
     geolang = require("geolang-express"),
-    i18n = require('i18n-express');;
+    i18n = require('i18n-express');
 
-module.exports = function(app, config) {
+module.exports = function(app, config, bot) {
+    app.use(bot.webhookCallback('/sec' + config.telegramToken));
     function compile(src, path) {
         return stylus(src).set('filename', path);
     }

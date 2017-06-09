@@ -10,6 +10,7 @@ module.exports = function(app, config) {
     var upload = multer({ dest: config.templatePath });
 
     app.get('/api/expertise', expertiseController.getAllExpertise);
+    app.get('/api/expertise/:id', expertiseController.getExpertiseById);
     app.post('/api/expertise', auth.requireRole('admin'), expertiseController.createExpertise);
     app.put('/api/expertise', auth.requireRole('admin'), expertiseController.updateExpertise);
 

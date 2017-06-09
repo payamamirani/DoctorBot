@@ -7,6 +7,12 @@ exports.getAllExpertise = function (req, res) {
     });
 };
 
+exports.getExpertiseById = function (req, res) {
+    ExpertiseModel.findOne({_id: req.params.id}).exec(function (err, expertise) {
+        res.send(expertise);
+    });
+};
+
 exports.createExpertise = function (req, res) {
     var expertiseData = req.body;
     expertiseData.CreatedOn = Date.now();
@@ -14,7 +20,8 @@ exports.createExpertise = function (req, res) {
 
     ExpertiseModel.create(expertiseData, function (err, expertise) {
         if(err) {
-            return res.status(400).send({reason: err.toString()});
+            res.status(400);
+            return res.send({reason: err.toString()});
         } else {
             return res.send({success: true, expertise: expertise});
         }
@@ -22,5 +29,16 @@ exports.createExpertise = function (req, res) {
 };
 
 exports.updateExpertise = function (req, res) {
-    res.send({ok:true});
+    var expertiseData = req.body;
+    expertiseData.ModifiedOn = Date.now();
+    expertiseData.ModifiedBy = req.user[0].Username;
+
+    ExpertiseModel.findOneAndUpdate({_id: expertiseData._id}, expertiseData,{new: true}, function (err, expertise) {
+        if(err) {
+            res.status(400);
+            return res.send({reason: err.toString()});
+        } else {
+            return res.send({success: true, expertise: expertise});
+        }
+    });
 };

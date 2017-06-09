@@ -1,6 +1,12 @@
-angular.module('app').controller('mvExpertiseListCtrl', function ($scope, mvExpertise, mvNotifier) {
-    $scope.expertise = mvExpertise.query();
-    
+angular.module('app').controller('mvExpertiseListCtrl', function ($scope, $timeout, mvExpertise, mvNotifier) {
+    $scope.refresh = function () {
+        $timeout(function(){
+            $scope.expertise = mvExpertise.query();
+        });
+    };
+
+    $scope.refresh();
+
     $scope.AddNew = function () {
         $("#AddExpertise").modal('show');
         $scope.Id = null;
@@ -10,15 +16,34 @@ angular.module('app').controller('mvExpertiseListCtrl', function ($scope, mvExpe
         $scope.ModalTitle = texts.AddExpertise;
     };
 
+    $scope.Edit = function (obj) {
+        $("#AddExpertise").modal('show');
+        $scope.Id = obj._id;
+        $scope.expertiseTitle = obj.Title;
+        $scope.expertiseIsActive = obj.IsActive;
+        $scope.method = "Edit";
+        $scope.ModalTitle = texts.EditExpertise;
+    };
+
+    $scope.ChangeActive = function(obj){
+        obj.IsActive = !obj.IsActive;
+        obj.$update().then(function(){
+            mvNotifier.successNotify(texts.SuccessAction, "");
+            $scope.refresh();
+        }, function(response) {
+            mvNotifier.errorNotify(texts.ErrorAction, response.data.reason);
+        });
+    };
+
     $scope.SaveExpertise = function () {
         var expertiseData = {
             Title: $scope.expertiseTitle,
-            IsActive: $scope.expertiseIsActive
+            IsActive: !!$scope.expertiseIsActive
         };
 
         switch ($scope.method) {
             case "Edit":
-                expertiseData.Id = $scope.Id;
+                expertiseData._id = $scope.Id;
                 break;
         }
 
@@ -27,6 +52,7 @@ angular.module('app').controller('mvExpertiseListCtrl', function ($scope, mvExpe
             newExpertise.$save().then(function () {
                 mvNotifier.successNotify(texts.SuccessAction, "");
                 $("#AddExpertise").modal('hide');
+                $scope.refresh();
             }, function (response) {
                 mvNotifier.errorNotify(texts.ErrorAction, response.data.reason);
             })
@@ -34,6 +60,7 @@ angular.module('app').controller('mvExpertiseListCtrl', function ($scope, mvExpe
             newExpertise.$update().then(function () {
                 mvNotifier.successNotify(texts.SuccessAction, "");
                 $("#AddExpertise").modal('hide');
+                $scope.refresh();
             }, function (response) {
                 mvNotifier.errorNotify(texts.ErrorAction, response.data.reason);
             })
