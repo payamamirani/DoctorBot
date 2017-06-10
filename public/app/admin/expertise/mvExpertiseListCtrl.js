@@ -11,6 +11,7 @@ angular.module('app').controller('mvExpertiseListCtrl', function ($scope, $timeo
         $("#AddExpertise").modal('show');
         $scope.Id = null;
         $scope.expertiseTitle = null;
+        $scope.expertiseFees = null;
         $scope.expertiseIsActive = null;
         $scope.method = "AddNew";
         $scope.ModalTitle = texts.AddExpertise;
@@ -20,6 +21,7 @@ angular.module('app').controller('mvExpertiseListCtrl', function ($scope, $timeo
         $("#AddExpertise").modal('show');
         $scope.Id = obj._id;
         $scope.expertiseTitle = obj.Title;
+        $scope.expertiseFees = obj.Fees;
         $scope.expertiseIsActive = obj.IsActive;
         $scope.method = "Edit";
         $scope.ModalTitle = texts.EditExpertise;
@@ -38,7 +40,8 @@ angular.module('app').controller('mvExpertiseListCtrl', function ($scope, $timeo
     $scope.SaveExpertise = function () {
         var expertiseData = {
             Title: $scope.expertiseTitle,
-            IsActive: !!$scope.expertiseIsActive
+            IsActive: !!$scope.expertiseIsActive,
+            Fees: $scope.expertiseFees
         };
 
         switch ($scope.method) {

@@ -2,9 +2,11 @@
 var mongoose = require('mongoose');
 
 var requiredMsg = '{PATH} is required.';
-var ExpertiseSchema = mongoose.Schema({
-    Title: {type: String, required: requiredMsg },
+var DoctorSchema = mongoose.Schema({
+    FullName: {type: String, required: requiredMsg },
     Fees: {type: Number, required: requiredMsg },
+    Expertise: {type: String, required: requiredMsg },
+    IsAvailable: {type: Boolean, required: requiredMsg },
     IsActive: {type: Boolean, required: requiredMsg },
     CreatedOn: {type: Date, required: requiredMsg },
     CreatedBy: {type: String, required: requiredMsg },
@@ -12,14 +14,16 @@ var ExpertiseSchema = mongoose.Schema({
     ModifiedBy: {type: String }
 });
 
-var Expertise = mongoose.model('Expertise', ExpertiseSchema);
-function createDefaultExpertise() {
-    Expertise.findOne({}).exec(function (err, expertise) {
+var Doctors = mongoose.model('Doctors', DoctorSchema);
+function createDefaultDoctors() {
+    Doctors.findOne({}).exec(function (err, doctor) {
         if (err) console.error(err);
-        if (!expertise) {
-            Expertise.create({
-                Title: "عمومی",
+        if (!doctor) {
+            Doctors.create({
+                FullName: "تست",
                 Fees: 0,
+                Expertise: "عمومی",
+                IsAvailable: true,
                 IsActive: true,
                 CreatedOn: Date.now(),
                 CreatedBy: "pm.amirani@gmail.com"
@@ -28,4 +32,4 @@ function createDefaultExpertise() {
     });
 }
 
-exports.createDefaultExpertise = createDefaultExpertise;
+exports.createDefaultDoctors = createDefaultDoctors;

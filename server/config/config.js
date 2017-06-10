@@ -24,7 +24,7 @@ module.exports = function(env) {
 
     if(env === "development") {
         config.db = "mongodb://localhost/DoctorBot";
-        config.port = process.env.PORT || 3000;
+        config.port = process.env.PORT || 80;
     } else if(env === "production") {
         config.db = "mongodb://appuser:multivision123@ds027145.mlab.com:27145/multivision";
         config.port = process.env.PORT || 8000;

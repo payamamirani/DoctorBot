@@ -3,11 +3,17 @@ var multer = require('multer'),
     auth = require('./auth'),
     captcha = require('./captcha'),
     userController = require('../controllers/users'),
-    expertiseController = require('../controllers/expertise');
+    expertiseController = require('../controllers/expertise'),
+    doctorController = require('../controllers/doctros');
 
 module.exports = function(app, config) {
 
     var upload = multer({ dest: config.templatePath });
+
+    app.get('/api/doctors', doctorController.getAllDoctors);
+    app.get('/api/doctors/:id', doctorController.getDoctorById);
+    app.post('/api/doctors', auth.requireRole('admin'), doctorController.createDoctor);
+    app.put('/api/doctors', auth.requireRole('admin'), doctorController.updateDoctor);
 
     app.get('/api/expertise', expertiseController.getAllExpertise);
     app.get('/api/expertise/:id', expertiseController.getExpertiseById);

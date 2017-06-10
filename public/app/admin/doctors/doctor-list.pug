@@ -1,0 +1,84 @@
+.row
+    .col-xs-12
+        button.btn.btn-primary(ng-click="AddNew()")= !!texts ? texts.Add : "Add"
+br
+.table-responsive
+    table.table.table-striped.table-hover
+        thead
+            tr
+                th= !!texts ? texts.FullName : "FullName"
+                th= !!texts ? texts.Fees : "Fees"
+                th= !!texts ? texts.Expertise : "Expertise"
+                th= !!texts ? texts.Available : "Available"
+                th= !!texts ? texts.Active : "Active"
+                th= !!texts ? texts.Operation : "Operation"
+        tbody
+            tr(ng-repeat="doc in doctors").hand-cursor
+                td {{ doc.FullName }}
+                td {{ doc.Fees }}
+                td {{ doc.Expertise }}
+                td
+                    span.glyphicon(ng-class="doc.IsAvailable ? 'glyphicon-ok text-success' : 'glyphicon glyphicon-minus text-danger'")
+                td
+                    span.glyphicon(ng-class="doc.IsActive ? 'glyphicon-ok text-success' : 'glyphicon glyphicon-minus text-danger'")
+                td
+                    .btn-group
+                        a.btn.btn-sm.btn-group(ng-click='ChangeActive(doc)',
+                        ng-class='doc.IsActive ? "btn-danger" : "btn-success"'
+                        title=!!texts ? texts.ChangeActive : "Change Active")
+                            span.glyphicon.glyphicon-refresh
+                        a.btn.btn-sm.btn-group(ng-click='ChangeAvailable(doc)',
+                        ng-class='doc.IsAvailable ? "btn-danger" : "btn-success"',
+                        title=!!texts ? texts.ChangeAvailable : "Change Available")
+                            span.glyphicon(ng-class="doc.IsAvailable ? 'glyphicon-arrow-down' : 'glyphicon-arrow-up'")
+                        a.btn.btn-sm.btn-primary.btn-group(ng-click='Edit(doc)', title=!!texts ? texts.Edit : "Edit")
+                            span.glyphicon.glyphicon-edit
+
+.modal.fade#AddDoctor(role="AddDoctor")
+    .modal-dialog.col-xs-12.col-sm-8.div-center
+        .modal-content
+            .modal-header
+                button.close(data-dismiss="modal") &times;
+                h4 {{ ModalTitle }}
+            .modal-body
+                .well.text-center
+                    form.form-horizontal(name="addDoctorForm")
+                        fieldset
+                            .form-group
+                                label.col-sm-3.control-label(for="fullName")
+                                    = (!!texts ? texts.FullName : "FullName") + " : "
+                                .col-sm-9
+                                    input.form-control(name="fullName" type="text" ng-model="doctorFullName" required
+                                    placeholder= !!texts ? texts.FullName : "FullName")
+                                    input(type="hidden" ng-model="Id")
+                                    input(type="hidden" ng-model="method")
+                            .form-group
+                                label.col-sm-3.control-label(for="fees")
+                                    = (!!texts ? texts.Fees : "Fees") + " : "
+                                .col-sm-9
+                                    input.form-control(name="fees" type="number" ng-model="doctorFees" required
+                                    placeholder= !!texts ? texts.Fees : "Fees")
+                            .form-group
+                                label.col-sm-3.control-label(for="expertise")
+                                    = (!!texts ? texts.Fees : "Fees") + " : "
+                                .col-sm-9
+                                    select.form-control(name="expertise" ng-model="doctorExpertise" required)
+                                        option(ng-repeat="x in expertise" value="{{ x.Title }}") {{ x.Title }}
+                            .form-group
+                                label.col-sm-3.control-label(for="isAvailable")
+                                    = (!!texts ? texts.Available : "Available") + " : "
+                                .col-sm-9
+                                    input.form-control(name="isAvailable" type="checkbox" ng-model="doctorIsAvailable")
+                            .form-group
+                                label.col-sm-3.control-label(for="isActive")
+                                    = (!!texts ? texts.Active : "Active") + " : "
+                                .col-sm-9
+                                    input.form-control(name="isActive" type="checkbox" ng-model="doctorIsActive")
+                            .form-group
+                                .col-xs-12.pull-left
+                                    button.btn.btn-primary(ng-click="SaveDoctor()" ng-disabled="addDoctorForm.$invalid")
+                                        = !!texts ? texts.Save : "Save"
+                                    | &nbsp;
+                                    a.btn.btn-default(href="" data-toggle="modal" data-dismiss="modal")= !!texts ? texts.Cancel : "Cancel"
+            .modal-footer
+                button.btn.btn-default(data-dismiss="modal")= !!texts ? texts.Close : "Close"

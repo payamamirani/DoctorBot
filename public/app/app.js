@@ -27,6 +27,8 @@ angular.module('app').config(function($routeProvider, $locationProvider, $httpPr
             resolve: routeRoleCheck.admin })
         .when('/admin/expertise' , { templateUrl: '/partials/admin/expertise/expertise-list' , controller: 'mvExpertiseListCtrl',
             resolve: routeRoleCheck.admin })
+        .when('/admin/doctors' , { templateUrl: '/partials/admin/doctors/doctor-list' , controller: 'mvDoctorListCtrl',
+            resolve: routeRoleCheck.admin })
         .when('/signup', { templateUrl: '/partials/account/signup', controller: 'mvSignupCtrl',
             resolve: routeRoleCheck.admin })
         .when('/signin', { templateUrl: '/partials/account/signin', controller: 'mvLoginCtrl',
