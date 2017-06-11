@@ -10,7 +10,7 @@ angular.module('app').controller('mvDoctorListCtrl', function ($scope, $timeout,
 
     $scope.AddNew = function () {
         $("#AddDoctor").modal('show');
-        $scope.doctorFullName = $scope.doctorFees = $scope.doctorIsAvailable = $scope.doctorIsActive= $scope.doctorExpertise = null;
+        $scope.doctorFullName = $scope.doctorCellNo = $scope.doctorFees = $scope.doctorIsAvailable = $scope.doctorIsActive= $scope.doctorExpertise = null;
         $scope.method = "AddNew";
         $scope.ModalTitle = texts.AddDoctor;
     };
@@ -23,6 +23,7 @@ angular.module('app').controller('mvDoctorListCtrl', function ($scope, $timeout,
         $scope.doctorFees = obj.Fees;
         $scope.doctorIsAvailable = obj.IsAvailable;
         $scope.doctorIsActive = obj.IsActive;
+        $scope.doctorCellNo = obj.CellNo;
         $scope.method = "Edit";
         $scope.ModalTitle = texts.EditDoctor;
     };
@@ -53,7 +54,8 @@ angular.module('app').controller('mvDoctorListCtrl', function ($scope, $timeout,
             IsAvailable: !!$scope.doctorIsAvailable,
             IsActive: !!$scope.doctorIsActive,
             Fees: $scope.doctorFees,
-            Expertise: $scope.doctorExpertise
+            Expertise: $scope.doctorExpertise,
+            CellNo: $scope.doctorCellNo
         };
 
         if($scope.method === "Edit")

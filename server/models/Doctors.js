@@ -6,10 +6,12 @@ var DoctorSchema = mongoose.Schema({
     FullName: {type: String, required: requiredMsg },
     Fees: {type: Number, required: requiredMsg },
     Expertise: {type: String, required: requiredMsg },
+    CellNo : {type: String, required: requiredMsg },
     IsAvailable: {type: Boolean, required: requiredMsg },
     IsActive: {type: Boolean, required: requiredMsg },
     CreatedOn: {type: Date, required: requiredMsg },
     CreatedBy: {type: String, required: requiredMsg },
+    ChatID: {type: Number },
     ModifiedOn: {type: Date },
     ModifiedBy: {type: String }
 });

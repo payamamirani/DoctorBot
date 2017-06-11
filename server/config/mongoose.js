@@ -3,7 +3,8 @@ var mongoose = require('mongoose'),
     UserModel = require('../models/User'),
     ExpertiseModel = require('../models/Expertise'),
     DoctorsModel = require('../models/Doctors'),
-    TelegramMessageModel = require('../models/TelegramMessage');
+    TelegramMessageModel = require('../models/TelegramMessage'),
+    TelegrafErrorModel = require('../models/TelegrafError')
 
 module.exports = function(config) {
     mongoose.connect(config.db);
@@ -16,4 +17,5 @@ module.exports = function(config) {
     ExpertiseModel.createDefaultExpertise();
     DoctorsModel.createDefaultDoctors();
     TelegramMessageModel();
+    TelegrafErrorModel();
 };

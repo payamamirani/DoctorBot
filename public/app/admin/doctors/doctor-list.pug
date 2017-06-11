@@ -6,17 +6,21 @@ br
     table.table.table-striped.table-hover
         thead
             tr
+                th= !!texts ? texts.CellNo : "CellNo"
                 th= !!texts ? texts.FullName : "FullName"
                 th= !!texts ? texts.Fees : "Fees"
                 th= !!texts ? texts.Expertise : "Expertise"
+                th= !!texts ? texts.ChatID : "ChatID"
                 th= !!texts ? texts.Available : "Available"
                 th= !!texts ? texts.Active : "Active"
                 th= !!texts ? texts.Operation : "Operation"
         tbody
             tr(ng-repeat="doc in doctors").hand-cursor
+                td {{ doc.CellNo }}
                 td {{ doc.FullName }}
                 td {{ doc.Fees }}
                 td {{ doc.Expertise }}
+                td {{ doc.ChatID }}
                 td
                     span.glyphicon(ng-class="doc.IsAvailable ? 'glyphicon-ok text-success' : 'glyphicon glyphicon-minus text-danger'")
                 td
@@ -44,6 +48,12 @@ br
                 .well.text-center
                     form.form-horizontal(name="addDoctorForm")
                         fieldset
+                            .form-group
+                                label.col-sm-3.control-label(for="cellNo")
+                                    = (!!texts ? texts.CellNo : "CellNo") + " : "
+                                .col-sm-9
+                                    input.form-control(name="cellNo" type="text" ng-model="doctorCellNo" required
+                                    placeholder= !!texts ? texts.CellNo : "CellNo")
                             .form-group
                                 label.col-sm-3.control-label(for="fullName")
                                     = (!!texts ? texts.FullName : "FullName") + " : "
