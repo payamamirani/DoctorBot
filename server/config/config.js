@@ -20,7 +20,7 @@ module.exports = function(env) {
         keyPath: keyPath,
         httpsPort: process.env.HttpsPort || 443,
         telegramToken: process.env.TelegramToken || "372521757:AAFViBIIVXp7l3IvC6jz8oi-qhlNw88Yofo",
-        db: process.env.MongoString || "mongodb://localhost/DoctorBot";
+        db: process.env.MongoString || "mongodb://localhost/DoctorBot"
     };
 
     if(env === "development") {
