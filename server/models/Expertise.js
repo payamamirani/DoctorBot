@@ -3,13 +3,13 @@ var mongoose = require('mongoose');
 
 var requiredMsg = '{PATH} is required.';
 var ExpertiseSchema = mongoose.Schema({
-    Title: {type: String, required: requiredMsg },
-    Fees: {type: Number, required: requiredMsg },
-    IsActive: {type: Boolean, required: requiredMsg },
-    CreatedOn: {type: Date, required: requiredMsg },
-    CreatedBy: {type: String, required: requiredMsg },
-    ModifiedOn: {type: Date },
-    ModifiedBy: {type: String }
+    Title: { type: String, required: requiredMsg },
+    Fees: { type: Number, required: requiredMsg },
+    IsActive: { type: Boolean, required: requiredMsg },
+    CreatedOn: { type: Date, required: requiredMsg },
+    CreatedBy: { type: String, required: requiredMsg },
+    ModifiedOn: { type: Date },
+    ModifiedBy: { type: String }
 });
 
 var Expertise = mongoose.model('Expertise', ExpertiseSchema);

@@ -4,13 +4,13 @@ var mongoose = require('mongoose'),
 
 var requiredMsg = '{PATH} is required.';
 var UserSchema = mongoose.Schema({
-    FirstName: {type: String, required: requiredMsg },
-    LastName: {type: String, required: requiredMsg },
-    Username: {type: String, required: requiredMsg, unique: true, lowercase: true },
-    Salt: {type: String, required: requiredMsg },
-    HashPassword: {type: String, required: requiredMsg },
+    FirstName: { type: String, required: requiredMsg },
+    LastName: { type: String, required: requiredMsg },
+    Username: { type: String, required: requiredMsg, unique: true, lowercase: true },
+    Salt: { type: String, required: requiredMsg },
+    HashPassword: { type: String, required: requiredMsg },
     Token: String,
-    TokenExpireDate: {type: Date},
+    TokenExpireDate: { type: Date},
     Roles: [String]
 });
 
