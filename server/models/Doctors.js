@@ -22,7 +22,8 @@ function createDefaultDoctors() {
         if (err) console.error(err);
         if (!doctor) {
             Doctors.create({
-                FullName: "تست",
+                CellNo: "09357574769"
+                FullName: "پیام امیرانی",
                 Fees: 0,
                 Expertise: "عمومی",
                 IsAvailable: true,
