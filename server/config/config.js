@@ -18,16 +18,16 @@ module.exports = function(env) {
         templatePath: templatePath,
         siteImagePath: siteImagePath,
         keyPath: keyPath,
-        httpsPort: 443,
-        telegramToken: "372521757:AAFViBIIVXp7l3IvC6jz8oi-qhlNw88Yofo"
+        httpsPort: process.env.HttpsPort || 443,
+        telegramToken: process.env.TelegramToken || "372521757:AAFViBIIVXp7l3IvC6jz8oi-qhlNw88Yofo"
     };
 
     if(env === "development") {
-        config.db = "mongodb://localhost/DoctorBot";
+        config.db = process.env.MongoString || "mongodb://localhost/DoctorBot";
         config.port = process.env.PORT || 3000;
     } else if(env === "production") {
-        config.db = "mongodb://appuser:multivision123@ds027145.mlab.com:27145/multivision";
-        config.port = process.env.PORT || 8000;
+        config.db = process.env.MongoString || "mongodb://appuser:multivision123@ds027145.mlab.com:27145/multivision";
+        config.port = process.env.PORT || 80;
     }
     return config;
 };
