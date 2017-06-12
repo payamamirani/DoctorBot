@@ -22,7 +22,7 @@ function createDefaultDoctors() {
         if (err) console.error(err);
         if (!doctor) {
             Doctors.create({
-                CellNo: "09357574769"
+                CellNo: "09357574769",
                 FullName: "پیام امیرانی",
                 Fees: 0,
                 Expertise: "عمومی",
