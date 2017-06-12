@@ -4,18 +4,17 @@ var mongoose = require('mongoose'),
     ExpertiseModel = require('../models/Expertise'),
     DoctorsModel = require('../models/Doctors'),
     TelegramMessageModel = require('../models/TelegramMessage'),
-    TelegrafErrorModel = require('../models/TelegrafError')
+    TelegrafErrorModel = require('../models/TelegrafError'),
+    ConnectDoctorToCustomerModel = require('../models/ConnectDocToCustomer')
 
 module.exports = function(config) {
     mongoose.connect(config.db);
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'Connecting to database error ...'));
-    db.once('open', function callback(){
+    db.once('open', function callback() {
         console.log('Database opened.');
     });
     UserModel.createDefaultUsers();
     ExpertiseModel.createDefaultExpertise();
     DoctorsModel.createDefaultDoctors();
-    TelegramMessageModel();
-    TelegrafErrorModel();
 };
